@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monky Funky Café | Halifax</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #1a3d1e;
+  color: #fdf6e3;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── COLOURS ──
+  blue    #2e7fc1
+  red     #d94f2b
+  green   #3aaa35
+  jungle  #1a3d1e
+  dark    #122b15
+  cream   #fdf6e3
+*/
+
+/* ── POLKA DOT UTIL ── */
+.polka {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+}
+
+/* ══════════════════════════════
+   NAV
+══════════════════════════════ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: #122b15;
+  border-bottom: 3px solid #3aaa35;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-logo-img {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 2px solid #3aaa35;
+  overflow: hidden;
+  background: #5c3317;
+  flex-shrink: 0;
+}
+
+.nav-logo-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.nav-wordmark { line-height: 1; }
+.nw1 { font-family: 'Fredoka One', cursive; font-size: 1.15rem; color: #2e7fc1; display: block; }
+.nw2 { font-family: 'Fredoka One', cursive; font-size: 1.15rem; color: #d94f2b; display: block; margin-top: -3px; }
+.nw3 { font-family: 'Fredoka One', cursive; font-size: 0.95rem; color: #3aaa35; display: block; margin-top: -3px; }
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: rgba(253,246,227,0.68);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: #fdf6e3; }
+
+.nav-cta {
+  background: #d94f2b !important;
+  color: #fff !important;
+  padding: 10px 22px;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+.nav-cta:hover { background: #e8701a !important; }
+
+/* Hamburger */
+.ham {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.ham span {
+  display: block;
+  width: 25px; height: 3px;
+  background: #fdf6e3;
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* Mobile drawer */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 68px; left: 0; right: 0;
+  background: #122b15;
+  border-bottom: 3px solid #3aaa35;
+  padding: 24px 32px;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 199;
+}
+
+.mobile-menu.open { display: flex; }
+
+.mobile-menu a {
+  color: rgba(253,246,227,0.75);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: color 0.2s;
+}
+
+.mobile-menu a:hover { color: #fdf6e3; }
+
+.mobile-menu .mob-cta {
+  background: #d94f2b;
+  color: #fff !important;
+  text-align: center;
+  padding: 14px;
+  border-radius: 50px;
+  border-bottom: none;
+  margin-top: 4px;
+}
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.hero {
+  background-color: #22512a;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  padding: 80px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  min-height: 88vh;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #3aaa35;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  border-radius: 50px;
+  margin-bottom: 24px;
+}
+
+.blink {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: white;
+  animation: blink 1.4s infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.hero h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.08;
+  margin-bottom: 22px;
+  letter-spacing: 0.5px;
+}
+
+.h1-blue  { color: #4a9fd4; }
+.h1-red   { color: #d94f2b; }
+.h1-green { color: #52cc4c; }
+
+.hero-desc {
+  font-size: 1rem;
+  color: rgba(253,246,227,0.65);
+  line-height: 1.75;
+  max-width: 420px;
+  margin-bottom: 36px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-red {
+  display: inline-block;
+  background: #d94f2b;
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 34px;
+  border-radius: 50px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 5px 18px rgba(217,79,43,0.4);
+}
+
+.btn-red:hover { background: #e8701a; transform: translateY(-2px); }
+
+.btn-blue {
+  display: inline-block;
+  background: transparent;
+  color: #4a9fd4;
+  text-decoration: none;
+  padding: 13px 30px;
+  border-radius: 50px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  border: 2.5px solid #2e7fc1;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-blue:hover { background: #2e7fc1; color: #fff; }
+
+/* Hero right — feature cards */
+.hero-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hcard {
+  background: #1a3d1e;
+  border-radius: 16px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-left: 4px solid;
+}
+
+.hcard-blue  { border-left-color: #2e7fc1; }
+.hcard-red   { border-left-color: #d94f2b; }
+.hcard-green { border-left-color: #3aaa35; }
+.hcard-gold  { border-left-color: #e6b32a; }
+
+.hcard-icon {
+  font-size: 1.6rem;
+  width: 44px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.hcard-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  margin-bottom: 3px;
+}
+
+.hcard-body {
+  font-size: 0.78rem;
+  color: rgba(253,246,227,0.5);
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════
+   STATS
+══════════════════════════════ */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.stat {
+  padding: 28px 16px;
+  text-align: center;
+}
+
+.stat:nth-child(1) { background: #2e7fc1; }
+.stat:nth-child(2) { background: #d94f2b; }
+.stat:nth-child(3) { background: #3aaa35; }
+.stat:nth-child(4) { background: #122b15; }
+
+.stat-num { font-family: 'Fredoka One', cursive; font-size: 2.2rem; color: #fff; line-height: 1; }
+.stat-lbl { font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: 5px; }
+
+/* ══════════════════════════════
+   SHARED SECTION STYLES
+══════════════════════════════ */
+.section { padding: 88px 48px; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 50px;
+  margin-bottom: 12px;
+}
+
+.ey-blue  { background: rgba(46,127,193,0.18); color: #4a9fd4; }
+.ey-red   { background: rgba(217,79,43,0.18);  color: #f07050; }
+.ey-green { background: rgba(58,170,53,0.18);  color: #52cc4c; }
+
+.sec-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  line-height: 1.1;
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+}
+
+.sec-title .blue  { color: #4a9fd4; }
+.sec-title .red   { color: #d94f2b; }
+.sec-title .green { color: #52cc4c; }
+
+.sec-body {
+  font-size: 0.97rem;
+  color: rgba(253,246,227,0.58);
+  line-height: 1.75;
+  max-width: 480px;
+}
+
+/* ══════════════════════════════
+   MENU
+══════════════════════════════ */
+.menu-sec {
+  background-color: #122b15;
+}
+
+.menu-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.mcard {
+  background: #1a3d1e;
+  border-radius: 16px;
+  padding: 26px;
+  border-top: 4px solid;
+  transition: transform 0.2s;
+}
+
+.mcard:hover { transform: translateY(-5px); }
+
+.mcard-blue  { border-top-color: #2e7fc1; }
+.mcard-red   { border-top-color: #d94f2b; }
+.mcard-green { border-top-color: #3aaa35; }
+
+.mcard-cat {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.cat-blue  { color: #4a9fd4; }
+.cat-red   { color: #f07050; }
+.cat-green { color: #52cc4c; }
+
+.mcard-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.mcard-desc {
+  font-size: 0.8rem;
+  color: rgba(253,246,227,0.5);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+
+.mcard-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mcard-price {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.35rem;
+}
+
+.pr-blue  { color: #4a9fd4; }
+.pr-red   { color: #f07050; }
+.pr-green { color: #52cc4c; }
+
+.mtag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
+.mtag-pop { background: rgba(217,79,43,0.18); color: #f07050; }
+.mtag-veg { background: rgba(58,170,53,0.18); color: #52cc4c; }
+.mtag-new { background: rgba(46,127,193,0.18); color: #4a9fd4; }
+
+/* ══════════════════════════════
+   ABOUT
+══════════════════════════════ */
+.about-sec {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 520px;
+}
+
+.about-left {
+  background-color: #22512a;
+  padding: 80px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-right {
+  background-color: #1a3d1e;
+  padding: 80px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.about-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0 32px;
+}
+
+.pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 50px;
+  border: 2px solid;
+}
+
+.pill-blue  { border-color: #2e7fc1; color: #4a9fd4; }
+.pill-red   { border-color: #d94f2b; color: #f07050; }
+.pill-green { border-color: #3aaa35; color: #52cc4c; }
+
+.abox {
+  background: #122b15;
+  border-radius: 14px;
+  padding: 20px 22px;
+  border-left: 4px solid;
+}
+
+.abox-blue  { border-left-color: #2e7fc1; }
+.abox-red   { border-left-color: #d94f2b; }
+.abox-green { border-left-color: #3aaa35; }
+
+.abox-title { font-family: 'Fredoka One', cursive; font-size: 0.95rem; margin-bottom: 4px; }
+.abox-body  { font-size: 0.78rem; color: rgba(253,246,227,0.5); line-height: 1.55; }
+
+/* ══════════════════════════════
+   HOURS
+══════════════════════════════ */
+.hours-sec {
+  background-color: #122b15;
+}
+
+.hours-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hours-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 32px;
+}
+
+.hours-table tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.hours-table td { padding: 13px 4px; font-size: 0.9rem; }
+.hours-table td:first-child { color: rgba(253,246,227,0.48); font-weight: 600; }
+.hours-table td:last-child  { text-align: right; font-weight: 700; }
+.hours-table .late td       { color: #f07050; }
+
+.hours-note {
+  margin-top: 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #f07050;
+}
+
+.contact-list {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.citem { display: flex; align-items: center; gap: 14px; }
+
+.citem-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.ci-blue  { background: rgba(46,127,193,0.15); }
+.ci-red   { background: rgba(217,79,43,0.15); }
+.ci-green { background: rgba(58,170,53,0.15); }
+
+.citem-lbl { font-size: 0.62rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(253,246,227,0.32); margin-bottom: 4px; }
+.citem-val { font-size: 0.92rem; font-weight: 700; }
+.citem-val a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(253,246,227,0.15); transition: color 0.2s; }
+.citem-val a:hover { color: #f07050; }
+
+/* ══════════════════════════════
+   REVIEWS
+══════════════════════════════ */
+.reviews-sec {
+  background-color: #22512a;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 18px;
+  margin-top: 48px;
+}
+
+.rcard {
+  background: #1a3d1e;
+  border-radius: 16px;
+  padding: 28px;
+  transition: transform 0.2s;
+}
+
+.rcard:hover { transform: translateY(-4px); }
+.rcard:nth-child(1) { border-top: 4px solid #2e7fc1; }
+.rcard:nth-child(2) { border-top: 4px solid #d94f2b; }
+.rcard:nth-child(3) { border-top: 4px solid #3aaa35; }
+
+.rcard-stars { font-size: 0.9rem; letter-spacing: 2px; color: #e6b32a; margin-bottom: 14px; }
+.rcard-text  { font-size: 0.88rem; color: rgba(253,246,227,0.68); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+.rcard-name  { font-family: 'Fredoka One', cursive; font-size: 0.95rem; }
+.rcard-loc   { font-size: 0.68rem; color: rgba(253,246,227,0.32); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+/* ══════════════════════════════
+   CTA BANNER
+══════════════════════════════ */
+.cta-banner {
+  background-color: #d94f2b;
+  padding: 80px 48px;
+  text-align: center;
+}
+
+.cta-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  color: #fff;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+
+.cta-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 36px;
+  line-height: 1.65;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+.btn-white {
+  display: inline-block;
+  background: #fff;
+  color: #d94f2b;
+  text-decoration: none;
+  padding: 14px 38px;
+  border-radius: 50px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.2);
+}
+
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
+
+.btn-white-o {
+  display: inline-block;
+  border: 2.5px solid rgba(255,255,255,0.65);
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.btn-white-o:hover { background: rgba(255,255,255,0.15); }
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer {
+  background: #0f2212;
+  border-top: 3px solid #22512a;
+  padding: 48px;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-brand { line-height: 1; }
+.fb1 { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: #2e7fc1; display: block; }
+.fb2 { font-family: 'Fredoka One', cursive; font-size: 1.5rem; color: #d94f2b; display: block; margin-top: -4px; }
+.fb3 { font-family: 'Fredoka One', cursive; font-size: 1.2rem; color: #3aaa35; display: block; margin-top: -4px; }
+.footer-tagline { font-size: 0.78rem; color: rgba(253,246,227,0.3); margin-top: 12px; line-height: 1.6; max-width: 200px; }
+
+.footer-links-col { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.footer-links-col a {
+  color: rgba(253,246,227,0.45);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  background: none;
+  padding: 0;
+  height: auto;
+}
+.footer-links-col a:hover { color: #fdf6e3; }
+
+.footer-contact { text-align: right; }
+.footer-contact-title { font-family: 'Fredoka One', cursive; font-size: 0.9rem; color: rgba(253,246,227,0.35); margin-bottom: 14px; letter-spacing: 1px; }
+
+.footer-contact-items { display: flex; flex-direction: column; gap: 10px; }
+.fci { font-size: 0.82rem; color: rgba(253,246,227,0.5); }
+.fci a { color: inherit; text-decoration: none; transition: color 0.2s; }
+.fci a:hover { color: #f07050; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-top: 40px;
+  padding-top: 24px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: rgba(253,246,227,0.2);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 860px) {
+
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .ham { display: flex; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 56px 24px 64px;
+    min-height: unset;
+    gap: 40px;
+  }
+
+  .stats { grid-template-columns: 1fr 1fr; }
+
+  .section { padding: 64px 24px; }
+
+  .menu-top { flex-direction: column; align-items: flex-start; }
+
+  .about-sec { grid-template-columns: 1fr; }
+  .about-left, .about-right { padding: 56px 28px; }
+
+  .hours-inner { grid-template-columns: 1fr; gap: 48px; }
+
+  .cta-banner { padding: 64px 24px; }
+
+  footer { padding: 40px 24px; }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .footer-tagline { max-width: 100%; }
+  .footer-links-col { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .footer-contact { text-align: center; }
+  .footer-contact-items { align-items: center; }
+
+  .footer-bottom { margin-top: 28px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2.4rem; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .stat-num { font-size: 1.8rem; }
+  .hero-btns { flex-direction: column; }
+  .hero-btns a { text-align: center; }
+  .cta-btns { flex-direction: column; align-items: center; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-img">
+      <img src="logo.png" alt="Monky Funky Café">
+    </div>
+    <div class="nav-wordmark">
+      <span class="nw1">Monky</span>
+      <span class="nw2">Funky</span>
+      <span class="nw3">Café</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#hours">Hours</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="https://www.order.store/store/monky-funky-cafe-granville-st/bFjq9PeRUN6q_Sg7OmTEIw" target="_blank" class="nav-cta">Order Now</a></li>
+  </ul>
+
+  <button class="ham" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#menu"    onclick="closeMenu()">Menu</a>
+  <a href="#about"   onclick="closeMenu()">About</a>
+  <a href="#hours"   onclick="closeMenu()">Hours</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <a href="https://www.order.store/store/monky-funky-cafe-granville-st/bFjq9PeRUN6q_Sg7OmTEIw" target="_blank" class="mob-cta">Order Online Now</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div>
+    <div class="hero-tag"><span class="blink"></span> Now Open in Halifax</div>
+    <h1>
+      <span class="h1-blue">Bubble Tea.</span><br>
+      <span class="h1-red">Good Food.</span><br>
+      <span class="h1-green">Great Vibes.</span>
+    </h1>
+    <p class="hero-desc">
+      Halifax's favourite vegetarian café — serving bold bubble teas, fresh matcha, iced coffees, and hearty plant-based bites on Granville Street. Open late on weekends.
+    </p>
+    <div class="hero-btns">
+      <a class="btn-red"  href="https://www.order.store/store/monky-funky-cafe-granville-st/bFjq9PeRUN6q_Sg7OmTEIw" target="_blank">Order Online</a>
+      <a class="btn-blue" href="#menu">See the Menu</a>
+    </div>
+  </div>
+
+  <div class="hero-cards">
+    <div class="hcard hcard-blue">
+      <div class="hcard-icon">🧋</div>
+      <div>
+        <div class="hcard-title">Bubble Tea Bar</div>
+        <div class="hcard-body">20+ flavours — taro, matcha, strawberry, classic milk tea & more.</div>
+      </div>
+    </div>
+    <div class="hcard hcard-green">
+      <div class="hcard-icon">🌱</div>
+      <div>
+        <div class="hcard-title">100% Vegetarian</div>
+        <div class="hcard-body">Every single item on our menu is plant-friendly. Always.</div>
+      </div>
+    </div>
+    <div class="hcard hcard-red">
+      <div class="hcard-icon">🌙</div>
+      <div>
+        <div class="hcard-title">Open Late</div>
+        <div class="hcard-body">Until midnight most nights. Until 3 AM on Fri & Sat.</div>
+      </div>
+    </div>
+    <div class="hcard hcard-gold" style="border-left-color:#e6b32a;">
+      <div class="hcard-icon">📍</div>
+      <div>
+        <div class="hcard-title">1594 Granville Street</div>
+        <div class="hcard-body">Halifax, NS — right in the heart of downtown.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">20+</div><div class="stat-lbl">Bubble Tea Flavours</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-lbl">Vegetarian Menu</div></div>
+  <div class="stat"><div class="stat-num">7</div><div class="stat-lbl">Days a Week</div></div>
+  <div class="stat"><div class="stat-num">3AM</div><div class="stat-lbl">Fri & Sat Close</div></div>
+</div>
+
+<!-- ══ MENU ══ -->
+<section class="section menu-sec" id="menu">
+  <div class="menu-top">
+    <div>
+      <span class="eyebrow ey-blue">What We Serve</span>
+      <h2 class="sec-title">Our <span class="blue">Menu</span></h2>
+      <p class="sec-body">Fresh, bold, and always plant-based. Download our full menu or order online for pickup.</p>
+    </div>
+    <a class="btn-blue" href="https://img1.wsimg.com/blobby/go/e0f849d9-c563-402b-a06c-33db4f70ea4f/Copy%20of%20Copy%20of%20Coffee%20Shop%20MenuGreen%20and%20Pink.pdf" target="_blank">Download Menu</a>
+  </div>
+
+  <div class="menu-grid">
+    <div class="mcard mcard-blue">
+      <div class="mcard-cat cat-blue">Bubble Tea</div>
+      <div class="mcard-name">Classic Milk Tea</div>
+      <div class="mcard-desc">Rich black milk tea with chewy tapioca pearls. Creamy, smooth, and always satisfying.</div>
+      <div class="mcard-foot"><span class="mcard-price pr-blue">$6.50+</span><span class="mtag mtag-pop">Popular</span></div>
+    </div>
+    <div class="mcard mcard-red">
+      <div class="mcard-cat cat-red">Bubble Tea</div>
+      <div class="mcard-name">Taro Milk Tea</div>
+      <div class="mcard-desc">Creamy taro with sweet, nutty flavour and gorgeous purple colour. Loaded with tapioca pearls.</div>
+      <div class="mcard-foot"><span class="mcard-price pr-red">$6.75+</span><span class="mtag mtag-veg">Veg</span></div>
+    </div>
+    <div class="mcard mcard-green">
+      <div class="mcard-cat cat-green">Bubble Tea</div>
+      <div class="mcard-name">Strawberry Burst</div>
+      <div class="mcard-desc">Chilled fruit tea with strawberry popping boba. Summer in a cup, all year long.</div>
+      <div class="mcard-foot"><span class="mcard-price pr-green">$7.00+</span><span class="mtag mtag-pop">Popular</span></div>
+    </div>
+    <div class="mcard mcard-green">
+      <div class="mcard-cat cat-green">Matcha</div>
+      <div class="mcard-name">Matcha Latte</div>
+      <div class="mcard-desc">Ceremonial-grade matcha with oat or whole milk. Earthy and smooth — hot or iced.</div>
+      <div class="mcard-foot"><span class="mcard-price pr-green">$6.00+</span><span class="mtag mtag-new">New</span></div>
+    </div>
+    <div class="mcard mcard-blue">
+      <div class="mcard-cat cat-blue">Coffee</div>
+      <div class="mcard-name">Cold Brew</div>
+      <div class="mcard-desc">18-hour slow-steeped cold brew. Bold, smooth, zero bitterness. Best over ice.</div>
+      <div class="mcard-foot"><span class="mcard-price pr-blue">$5.50+</span><span class="mtag mtag-new">New</span></div>
+    </div>
+    <div class="mcard mcard-red">
+      <div class="mcard-cat cat-red">Food</div>
+      <div class="mcard-name">Veggie Club Sandwich</div>
+      <div class="mcard-desc">Fresh seasonal veggies with house-made spread on toasted artisan bread. Hearty and satisfying.</div>
+      <div class="mcard-foot"><span class="mcard-price pr-red">$9.00+</span><span class="mtag mtag-veg">Veg</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about" class="about-sec">
+  <div class="about-left">
+    <span class="eyebrow ey-green">Our Story</span>
+    <h2 class="sec-title">Vibrant Food for<br><span class="red">Every Body</span></h2>
+    <p class="sec-body">Monky Funky Café was built on one idea — that vegetarian food should be bold, fun, and never boring. We opened on Granville Street in Halifax to bring colourful bubble teas, freshly made matcha, and a fully plant-based menu to the city.</p>
+    <p class="sec-body" style="margin-top:14px;">Seven days a week, open late on weekends — the café is always your place.</p>
+    <div class="about-pills">
+      <span class="pill pill-blue">Bubble Tea</span>
+      <span class="pill pill-green">100% Veggie</span>
+      <span class="pill pill-red">Matcha Bar</span>
+      <span class="pill pill-blue">Open Late</span>
+    </div>
+    <a class="btn-red" href="https://www.order.store/store/monky-funky-cafe-granville-st/bFjq9PeRUN6q_Sg7OmTEIw" target="_blank">Order Now</a>
+  </div>
+  <div class="about-right">
+    <div class="abox abox-blue">
+      <div class="abox-title">Halifax's Bubble Tea Home Base</div>
+      <div class="abox-body">From classic milk tea to seasonal specials — every drink is made with care, your way.</div>
+    </div>
+    <div class="abox abox-green">
+      <div class="abox-title">Fully Vegetarian. Always.</div>
+      <div class="abox-body">We don't just offer veggie options — our entire menu is plant-based. Bold flavours, fresh ingredients, zero compromise.</div>
+    </div>
+    <div class="abox abox-red">
+      <div class="abox-title">Late Night & Community Focused</div>
+      <div class="abox-body">Open until 3AM on weekends — Monky Funky is Halifax's go-to spot when everywhere else is closed.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOURS ══ -->
+<section class="section hours-sec" id="hours">
+  <div class="hours-inner">
+    <div>
+      <span class="eyebrow ey-red">When We're Open</span>
+      <h2 class="sec-title">Hours of <span class="red">Operation</span></h2>
+      <table class="hours-table">
+        <tr><td>Monday</td><td>11:00 AM – 12:00 AM</td></tr>
+        <tr><td>Tuesday</td><td>11:00 AM – 12:00 AM</td></tr>
+        <tr><td>Wednesday</td><td>11:00 AM – 12:00 AM</td></tr>
+        <tr><td>Thursday</td><td>11:00 AM – 12:00 AM</td></tr>
+        <tr class="late"><td>Friday</td><td>11:00 AM – 3:00 AM ★</td></tr>
+        <tr class="late"><td>Saturday</td><td>12:00 PM – 3:00 AM ★</td></tr>
+        <tr><td>Sunday</td><td>12:00 PM – 12:00 AM</td></tr>
+      </table>
+      <div class="hours-note">★ Late night on Fri & Sat</div>
+    </div>
+    <div>
+      <span class="eyebrow ey-blue">Find Us</span>
+      <h2 class="sec-title">Come Say <span class="blue">Hello</span></h2>
+      <div class="contact-list">
+        <div class="citem">
+          <div class="citem-icon ci-green">📍</div>
+          <div>
+            <div class="citem-lbl">Address</div>
+            <div class="citem-val">1594 Granville Street, Halifax, NS</div>
+          </div>
+        </div>
+        <div class="citem">
+          <div class="citem-icon ci-blue">📞</div>
+          <div>
+            <div class="citem-lbl">Phone / WhatsApp</div>
+            <div class="citem-val"><a href="tel:17827011100">+1 782-701-1100</a></div>
+          </div>
+        </div>
+        <div class="citem">
+          <div class="citem-icon ci-red">✉️</div>
+          <div>
+            <div class="citem-lbl">Email</div>
+            <div class="citem-val"><a href="mailto:contact@monkyfunky.ca">contact@monkyfunky.ca</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REVIEWS ══ -->
+<section class="section reviews-sec" id="reviews">
+  <div style="max-width:520px; margin:0 auto; text-align:center;">
+    <span class="eyebrow ey-green">What People Are Saying</span>
+    <h2 class="sec-title">Happy <span class="green">Customers</span></h2>
+    <p class="sec-body" style="margin:0 auto;">Halifax loves Monky Funky. Here's why people keep coming back.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="rcard">
+      <div class="rcard-stars">★ ★ ★ ★ ★</div>
+      <p class="rcard-text">"Best bubble tea in Halifax, no contest. The taro milk tea is absolutely divine and the staff are so friendly. This place has such good vibes!"</p>
+      <div class="rcard-name">Sarah M.</div>
+      <div class="rcard-loc">Google Review · Halifax, NS</div>
+    </div>
+    <div class="rcard">
+      <div class="rcard-stars">★ ★ ★ ★ ★</div>
+      <p class="rcard-text">"Finally a late-night spot that's fully veggie AND delicious. The matcha latte is a game-changer. Open until 3am on weekends? Yes please!"</p>
+      <div class="rcard-name">Daniel K.</div>
+      <div class="rcard-loc">Google Review · Halifax, NS</div>
+    </div>
+    <div class="rcard">
+      <div class="rcard-stars">★ ★ ★ ★ ★</div>
+      <p class="rcard-text">"Such a gem on Granville Street. Love that everything is vegetarian. The sandwiches are fresh and the bubble teas are gorgeous and delicious."</p>
+      <div class="rcard-name">Priya L.</div>
+      <div class="rcard-loc">Google Review · Halifax, NS</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="cta-banner">
+  <div class="cta-title">Ready to Order?</div>
+  <p class="cta-sub">Get your favourite bubble teas and bites ready for pickup right from your phone. Fast, easy, always delicious.</p>
+  <div class="cta-btns">
+    <a class="btn-white" href="https://www.order.store/store/monky-funky-cafe-granville-st/bFjq9PeRUN6q_Sg7OmTEIw" target="_blank">Order Online Now</a>
+    <a class="btn-white-o" href="https://wa.me/17827011100" target="_blank">Chat on WhatsApp</a>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span class="fb1">Monky</span>
+        <span class="fb2">Funky</span>
+        <span class="fb3">Café</span>
+      </div>
+      <p class="footer-tagline">Halifax's favourite vegetarian bubble tea café. Open daily on Granville Street.</p>
+    </div>
+
+    <div class="footer-links-col">
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#hours">Hours</a>
+      <a href="#reviews">Reviews</a>
+      <a href="https://www.order.store/store/monky-funky-cafe-granville-st/bFjq9PeRUN6q_Sg7OmTEIw" target="_blank" style="color:#f07050;">Order Online</a>
+    </div>
+
+    <div class="footer-contact">
+      <div class="footer-contact-title">Get In Touch</div>
+      <div class="footer-contact-items">
+        <div class="fci">1594 Granville Street, Halifax NS</div>
+        <div class="fci"><a href="tel:17827011100">+1 782-701-1100</a></div>
+        <div class="fci"><a href="mailto:contact@monkyfunky.ca">contact@monkyfunky.ca</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Monky Funky Café · All Rights Reserved · Halifax, Nova Scotia
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+</script>
+
+</body>
+</html>
